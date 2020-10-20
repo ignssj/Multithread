@@ -15,12 +15,22 @@ public class AppVetor {
   }
 
   private static void withNrX(int nrThreads, String caminhoDeEscrita) {
+<<<<<<< HEAD:src/main/vetor/AppVetor.java
     VetorThread[] threads = new VetorThread[nrThreads];
     int pedaco = Vetor.value.length / nrThreads;        //um só pedaço do vetor exemplo 1000/4, logo serão 250 posições pra cada thread executar
+=======
+    ProcessadorThread[] threads = new ProcessadorThread[nrThreads];
+    int pedaco = Structure.vetor.length / nrThreads;        //um só pedaço do vetor exemplo 1000/4, logo cada parte ter 250 posições 
+>>>>>>> 407ef3db375c97fdea803d4edd459462ce4f2309:src/main/App.java
     int partes [] = new int[nrThreads + 1 ];
 
     /**
-     * Definição das partes baseadas no numero de thread
+     * Definição das partes baseadas no numero de thread,
+     * exemplo se tiver 4 threads e 250 posições essa parte do codigo é responsavel por definir as partes 
+     * parte 1 = 250
+     * parte 2 = 500
+     * ṕarte 3 = 750
+     * parte 4 = 1000
      */
     for (int i = 0; i < partes.length; i++)
       partes[i] = pedaco * (i);
@@ -28,6 +38,10 @@ public class AppVetor {
     /**
      * Colocação de cada nova thread criada em um pool, as threads estão recebendo um vetor com a posição inicial e final
      * ( dando a ideia de cada uma thread executar uma parte do vetor
+     * exemplo
+     * a thread 1 inicia pela por 0 e vai até a parte 1 que é 250
+     * a thread 2 inicia em 250 e vai até 500
+     * a thread 3 inicia em 500 e vai até 750 e assim sucessivamente
      */
     for (int k = 0 ; k < threads.length; k ++){
       threads[k] = new VetorThread(partes[k], partes[k + 1]);
@@ -39,7 +53,7 @@ public class AppVetor {
     long tempoFinal;
 
     /**
-     * Execução dom pool de todas as threads que foram previamente colocadas nele
+     * Execução do pool de todas as threads que foram previamente colocadas nele
      */
 
     ExecutorService pool = Executors.newFixedThreadPool(threads.length);
