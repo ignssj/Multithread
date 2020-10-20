@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 public class Main {
 
   static void with8Threads(){
-    int umOitavo = Matriz.vetor.length / 8;
+    int umOitavo = Structure.vetor.length / 8;
 
     int parte1 = umOitavo;
     int parte2 = umOitavo * 2;

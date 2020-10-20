@@ -11,14 +11,14 @@ public class ProcessadorThread extends Thread{
     long tempoInicial = System.currentTimeMillis();
     for (int i = posicaoInicial; i < posicaoFinal; i++) {
       for (int j = 0 ; j < 300; j ++){
-        Matriz.value[i][j] = j + 300 % 2;
+        Structure.vetor[i] = j + 300 % 2;
       }
     }
     long tempoFinal =  System.currentTimeMillis() - tempoInicial;
-    Matriz.variavel++;
+    Structure.variavel++;
 
     System.out.printf("\n  %.3f ms%n", tempoFinal / 1000d);
-    System.out.println(Matriz.variavel);
+    System.out.println(Structure.variavel);
   }
 
   void preencherMatriz(){
@@ -27,7 +27,7 @@ public class ProcessadorThread extends Thread{
      */
   }
   public void run (){
-//    preencherVetor();
-    preencherMatriz();
+    preencherVetor();
+//    preencherMatriz();
   }
 }
