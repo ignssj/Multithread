@@ -1,36 +1,48 @@
-package main;
+package main.matriz;
+
+import main.Arquivo;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class App {
+public class AppMatriz {
+
 
   public static void main(String[] args) {
-    withNrX(8, "/home/michel/Documents/");
+    withNrX(5, "/home/michel/Documents/");
+
 //    withNrX(32, "/home/michel/Documents/");
   }
 
   private static void withNrX(int nrThreads, String caminhoDeEscrita) {
-    ProcessadorThread[] threads = new ProcessadorThread[nrThreads];
-    int pedaco = Structure.vetor.length / nrThreads;        //um só pedaço do vetor exemplo 1000/4, logo serão 250 posições pra cada thread executar
-    int partes [] = new int[nrThreads + 1 ];
+    MatrizThread[] threads = new MatrizThread[nrThreads];
+    int nrDeColunas = Matriz.value[0].length;
+    int nrDeLinhas = Matriz.value.length;
+    int pedacoDeColuna = nrDeColunas / nrThreads;        //um pedaço das colunas exemplo uma matriz 1000X1000 e 4 threads entao tem 1000 colunas /4, logo serão 250 posições pra cada thread
+
+    System.out.println(nrDeColunas);
+    System.out.println(nrDeLinhas);
+    System.out.println(pedacoDeColuna);
+
+    int partes[] = new int[nrThreads +1];
 
     /**
      * Definição das partes baseadas no numero de thread
      */
     for (int i = 0; i < partes.length; i++)
-      partes[i] = pedaco * (i);
+      partes[i] = pedacoDeColuna * (i);
 
     /**
      * Colocação de cada nova thread criada em um pool, as threads estão recebendo um vetor com a posição inicial e final
      * ( dando a ideia de cada uma thread executar uma parte do vetor
      */
-    for (int k = 0 ; k < threads.length; k ++){
-      threads[k] = new ProcessadorThread(partes[k], partes[k + 1]);
-      System.out.println(threads[k].posicaoInicial + "--"+ threads[k].posicaoFinal);
-    }
+    System.out.println("Colunas : de x a y");
 
+    for (int k = 0; k < threads.length; k++) {
+      threads[k] = new MatrizThread(partes[k], partes[k + 1], nrDeLinhas);
+      System.out.print(threads[k].colunaInicial + "-" + threads[k].colunaFinal + "|");
+    }
 
     long tempoInicial = System.currentTimeMillis();
     long tempoFinal;
@@ -40,9 +52,13 @@ public class App {
      */
 
     ExecutorService pool = Executors.newFixedThreadPool(threads.length);
-    for(int i = 0 ; i < threads.length; i ++)
+    for (int i = 0; i < threads.length; i++)
       pool.execute(threads[i]);
     pool.shutdown();
+
+    /**
+     *  Final da execução a partir daqui é só para salvar no arquivo a matriz e e imprimir o tempo
+     */
 
     try {
       /**
@@ -53,13 +69,11 @@ public class App {
     } catch (InterruptedException e) {
       e.printStackTrace();
     } finally {
-      tempoFinal =  System.currentTimeMillis() - tempoInicial;
+      tempoFinal = System.currentTimeMillis() - tempoInicial;
       System.out.printf("\n  %.3f ms%n", tempoFinal / 1000d);
 
       Arquivo arquivo = new Arquivo();
-      arquivo.imprimir(Structure.vetor.length, Structure.vetor, nrThreads, tempoFinal, caminhoDeEscrita);
+      arquivo.imprimirMatriz(Matriz.value.length, Matriz.value, nrThreads, tempoFinal, caminhoDeEscrita);
     }
-
   }
-
 }

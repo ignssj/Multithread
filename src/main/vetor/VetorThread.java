@@ -1,21 +1,20 @@
-package main;
+package main.vetor;
 
-public class ProcessadorThread extends Thread{
+import java.util.Random;
+
+public class VetorThread extends Thread{
   int posicaoInicial;
   int posicaoFinal;
 
-  ProcessadorThread(int posicaoInicial, int posicaoFinal){
+  VetorThread(int posicaoInicial, int posicaoFinal){
     this.posicaoFinal = posicaoFinal;
     this.posicaoInicial = posicaoInicial;
   }
 
   void preencherVetor()   {
-    int var = 0;
+    Random random = new Random();
     for (int i = posicaoInicial; i < posicaoFinal; i++) {
-      for (int j = posicaoInicial; j < 300; j ++){
-        Structure.vetor[i] = j;
-      }
-      Structure.vetor[i] = i;
+      Vetor.value[i] = random.nextInt(100);
     }
   }
 
