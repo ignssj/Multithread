@@ -15,13 +15,8 @@ public class AppVetor {
   }
 
   private static void withNrX(int nrThreads, String caminhoDeEscrita) {
-<<<<<<< HEAD:src/main/vetor/AppVetor.java
     VetorThread[] threads = new VetorThread[nrThreads];
     int pedaco = Vetor.value.length / nrThreads;        //um só pedaço do vetor exemplo 1000/4, logo serão 250 posições pra cada thread executar
-=======
-    ProcessadorThread[] threads = new ProcessadorThread[nrThreads];
-    int pedaco = Structure.vetor.length / nrThreads;        //um só pedaço do vetor exemplo 1000/4, logo cada parte ter 250 posições 
->>>>>>> 407ef3db375c97fdea803d4edd459462ce4f2309:src/main/App.java
     int partes [] = new int[nrThreads + 1 ];
 
     /**

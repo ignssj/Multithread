@@ -6,7 +6,6 @@ public class MatrizThread extends  Thread{
   int colunaInicial;
   int colunaFinal;
   int tamanhoDeLinhas;
-  int fator;
 
   MatrizThread(int colunaInicial, int colunaFinal, int tamanhoDeLinhas){
     this.colunaInicial = colunaInicial;
@@ -16,7 +15,7 @@ public class MatrizThread extends  Thread{
 
   void preencherMatriz()   {
     Random random = new Random();
-    System.out.println("preencher  : " + colunaInicial + " até " + colunaFinal);
+    System.out.println("preencher  da coluna: " + colunaInicial + " até " + colunaFinal + " todas as " + tamanhoDeLinhas + " linhas");
     for (int i = 0; i < tamanhoDeLinhas; i++) {
       for (int j = colunaInicial; j < colunaFinal; j ++){
         Matriz.value[i][j] = random.nextInt(100);
