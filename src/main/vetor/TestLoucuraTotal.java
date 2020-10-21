@@ -4,6 +4,9 @@ import java.util.*;
 
 public class TestLoucuraTotal {
   public static void main(String[] args){
+    long tempoInicial = System.currentTimeMillis();
+    long tempoFinal;
+
     SortedSet<Integer> tree=new TreeSet<>();
     for (int i = 0 ; i < 1000000; i ++){
       tree.add(i);
@@ -24,10 +27,13 @@ public class TestLoucuraTotal {
       }
     }
 
-    System.out.println("imprimindo Vetor");
-    for (int i = 0; i < num.length; i++) {
-      System.out.print(num[i] + "|");
-    }
+//    System.out.println("imprimindo Vetor");
+//    for (int i = 0; i < num.length; i++) {
+//      System.out.print(num[i] + "|");
+//    }
+    tempoFinal = System.currentTimeMillis() - tempoInicial;
+    System.out.printf("\n  %.3f ms%n", tempoFinal / 1000d);
 
+    System.out.println("Fim da execucao");
   }
 }
