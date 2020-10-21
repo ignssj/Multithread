@@ -4,35 +4,46 @@ import java.util.*;
 
 public class TestLoucuraTotal {
   public static void main(String[] args){
-    System.out.println("Inicio da execucao");
+    ehOsGuriPai();
+//    fidedigna();
+  }
 
+
+  public static void ehOsGuriPai(){
+    int [][] matriz = new int[10][10];
+    for (int i = 0; i < matriz.length; i++) {
+      for (int j = 0; j < matriz[i].length; j++) {
+        matriz[i][j] = j + ( matriz[i].length * i);
+      }
+    }
+    for (int i = 0; i < matriz.length; i++) {
+      for (int j = 0; j < matriz[i].length; j++) {
+        System.out.println(matriz[i][j]);
+      }
+    }
+  }
+
+
+  public static void fidedigna(){
+    int tam = 10000000;
+    System.out.println("Inicio da execucao");
     long tempoInicial = System.currentTimeMillis();
     long tempoFinal;
 
     SortedSet<Integer> tree=new TreeSet<>();
-    for (int i = 0 ; i < 1000000; i ++){
+    for (int i = 0 ; i < tam; i ++){
       tree.add(i);
     }
-    int num[]=new int[1000000];//Criando vetor
+    int num[]=new int[tam];
 
     while(tree.size() != 0){
-      int randomico = (int) (Math.random() * 1000000); //gerando número aleatório
-//      System.out.print("Contem o valor randomico " + randomico + " ? ");
-//      System.out.println(tree.contains(randomico));
+      int randomico = (int) (Math.random() * tam);
       if(tree.contains(randomico) == true){
         num[randomico] = randomico;
-//        tree.forEach((value) ->{
-//        System.out.print(value + "|");
-//      });
-//        System.out.println("\nRemovendo:" + randomico);
         tree.remove(randomico);
       }
     }
 
-//    System.out.println("imprimindo Vetor");
-//    for (int i = 0; i < num.length; i++) {
-//      System.out.print(num[i] + "|");
-//    }
     tempoFinal = System.currentTimeMillis() - tempoInicial;
     System.out.printf("\n  %.3f ms%n", tempoFinal / 1000d);
     System.out.println("Fim da execucao");

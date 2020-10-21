@@ -44,6 +44,7 @@ public class Arquivo {
       for (int j = 0 ; j < matriz[i].length; j++){
         gravarArq.printf("%d|", matriz[i][j]);
       }
+//      gravarArq.println( )  ;
     }
     gravarArq.println("\nPreenchimento com  " + nrThreads  + " threads, tempo final de "  + tempoExecucao / 1000d+"ms" )  ;
 

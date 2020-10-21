@@ -11,8 +11,8 @@ public class AppMatriz {
 
   public static void main(String[] args) {
     int cores = Runtime.getRuntime().availableProcessors();
-    System.out.println(cores);
-    withNrX(cores, "/home/michel/Documents/");
+//    withNrX(cores, "/home/michel/Documents/");
+    withNrX(5, "/home/michel/Documents/");
 
 //    withNrX(32, "/home/michel/Documents/");
   }
@@ -22,11 +22,6 @@ public class AppMatriz {
     int nrDeColunas = Matriz.value[0].length;
     int nrDeLinhas = Matriz.value.length;
     int pedacoDeColuna = nrDeColunas / nrThreads;        //um pedaço das colunas exemplo uma matriz 1000X1000 e 4 threads entao tem 1000 colunas /4, logo serão 250 posições pra cada thread
-
-    System.out.println(nrDeColunas);
-    System.out.println(nrDeLinhas);
-    System.out.println(pedacoDeColuna);
-
     int partes[] = new int[nrThreads +1];
 
     /**
@@ -42,7 +37,7 @@ public class AppMatriz {
     System.out.println("Colunas : de x a y");
 
     for (int k = 0; k < threads.length; k++) {
-      threads[k] = new MatrizThread(partes[k], partes[k + 1], nrDeLinhas);
+      threads[k] = new MatrizThread(partes[k], partes[k + 1], nrDeLinhas, Matriz.value[0].length);
       System.out.print(threads[k].colunaInicial + "-" + threads[k].colunaFinal + "|");
     }
 
