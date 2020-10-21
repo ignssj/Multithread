@@ -10,7 +10,9 @@ public class AppMatriz {
 
 
   public static void main(String[] args) {
-    withNrX(5, "/home/michel/Documents/");
+    int cores = Runtime.getRuntime().availableProcessors();
+    System.out.println(cores);
+    withNrX(cores, "/home/michel/Documents/");
 
 //    withNrX(32, "/home/michel/Documents/");
   }
