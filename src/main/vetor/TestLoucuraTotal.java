@@ -4,6 +4,8 @@ import java.util.*;
 
 public class TestLoucuraTotal {
   public static void main(String[] args){
+    System.out.println("Inicio da execucao");
+
     long tempoInicial = System.currentTimeMillis();
     long tempoFinal;
 
@@ -33,7 +35,6 @@ public class TestLoucuraTotal {
 //    }
     tempoFinal = System.currentTimeMillis() - tempoInicial;
     System.out.printf("\n  %.3f ms%n", tempoFinal / 1000d);
-
     System.out.println("Fim da execucao");
   }
 }
